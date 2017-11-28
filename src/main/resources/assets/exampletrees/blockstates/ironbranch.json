@@ -1,0 +1,5 @@
+{
+    "variants": {
+        "normal": { "model": "exampletrees:ironbranch#dynamictree" }
+    }
+}

@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "axis=y":  { "model": "exampletrees:ironlog" },
+        "axis=z":   { "model": "exampletrees:ironlog", "x": 90 },
+        "axis=x":   { "model": "exampletrees:ironlog", "x": 90, "y": 90 },
+        "axis=none": { "model": "exampletrees:ironlogbark" }
+    }
+}

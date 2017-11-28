@@ -1,0 +1,7 @@
+{
+    "parent": "dynamictrees:item/branch",
+    "textures": {
+        "bark": "blocks/anvil_base",
+        "rings": "blocks/iron_block"
+    }
+}
