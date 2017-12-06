@@ -1,7 +1,8 @@
 package com.ferreusveritas.exampletrees.trees;
 
 import com.ferreusveritas.dynamictrees.trees.DynamicTree;
-import com.ferreusveritas.exampletrees.ExampleTrees;
+import com.ferreusveritas.exampletrees.ModBlocks;
+import com.ferreusveritas.exampletrees.ModConstants;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockColored;
@@ -16,13 +17,13 @@ import net.minecraftforge.common.BiomeDictionary.Type;
 public class TreeIron extends DynamicTree {
 
 	public TreeIron() {
-		super(ExampleTrees.MODID, "iron", 0);
+		super(ModConstants.MODID, "iron", 0);
 		
 		//Immensely slow-growing, stocky tree that pulls trace amounts of iron from the dirt
 		setBasicGrowingParameters(0.5f, 10.0f, getUpProbability(), getLowestBranchHeight(), 0.1f);
 
 		//Set up primitive log. This controls what is dropped on harvest, block hardness, flammability, etc.
-		IBlockState primLog = ExampleTrees.blocks.ironLog.getDefaultState();
+		IBlockState primLog = ModBlocks.ironLog.getDefaultState();
 		setPrimitiveLog(primLog, new ItemStack(primLog.getBlock()));
 		
 		//Set up primitive leaves. This controls what is dropped on shearing, branch support, leaves replacement, etc.
@@ -30,7 +31,7 @@ public class TreeIron extends DynamicTree {
 		setPrimitiveLeaves(primLeaves, new ItemStack(primLeaves.getBlock(), 1, primLeaves.getValue(BlockColored.COLOR).getMetadata()));
 		
 		//Set the dynamic sapling
-		setDynamicSapling(ExampleTrees.blocks.ironSapling.getDefaultState());
+		setDynamicSapling(ModBlocks.ironSapling.getDefaultState());
 		
 		//Let's pretend that iron trees have a hard time around water because of rust or something
 		envFactor(Type.BEACH, 0.1f);

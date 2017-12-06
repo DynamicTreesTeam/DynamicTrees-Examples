@@ -1,14 +1,15 @@
 package com.ferreusveritas.exampletrees.proxy;
 
 import com.ferreusveritas.dynamictrees.api.TreeHelper;
-import com.ferreusveritas.dynamictrees.api.client.TreeModelHelper;
+import com.ferreusveritas.dynamictrees.api.client.ModelHelper;
 import com.ferreusveritas.dynamictrees.blocks.BlockDynamicLeaves;
 import com.ferreusveritas.dynamictrees.trees.DynamicTree;
-import com.ferreusveritas.exampletrees.ExampleTrees;
+import com.ferreusveritas.exampletrees.ModBlocks;
+import com.ferreusveritas.exampletrees.ModConstants;
+import com.ferreusveritas.exampletrees.ModTrees;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.color.IBlockColor;
 import net.minecraft.client.renderer.color.IItemColor;
 import net.minecraft.item.Item;
@@ -21,52 +22,75 @@ public class ClientProxy extends CommonProxy {
 	
 	@Override
 	public void preInit() {
-		registerModels();
+		super.preInit();
 	}
 	
-	public void registerModels() {
-		TreeModelHelper.registerTreeModels(ExampleTrees.trees.ironTree);
-	}
-	
+	@Override
 	public void init() {
-		TreeModelHelper.regMesher(Item.getItemFromBlock(ExampleTrees.blocks.ironLog));
+		super.init();
+		//registerColorHandlers();
+	}
+	
+	@Override
+	public void registerModels() {
+		
+		ModelHelper.regModel(ModBlocks.ironLog);
+		
+		//TREE PARTS
 		
 		//Register Meshers for Branches and Seeds
-		DynamicTree tree = ExampleTrees.trees.ironTree;
-		
-		TreeModelHelper.regMesher(Item.getItemFromBlock(tree.getDynamicBranch()));//Block Branch Item Block
-		TreeModelHelper.regMesher(tree.getSeed());//Register Seed Item Model
+		for(DynamicTree tree: ModTrees.exampleTrees) {
+			ModelHelper.regModel(tree.getDynamicBranch());//Register Branch itemBlock
+			ModelHelper.regModel(tree.getSeed());//Register Seed Item Models
+			ModelHelper.regModel(tree);//Register custom state mapper for branch
+		}
 		
 		//Register GrowingLeavesBlocks Meshers and Colorizers
-		for(BlockDynamicLeaves leaves: TreeHelper.getLeavesMapForModId(ExampleTrees.MODID).values()) {
+		for(BlockDynamicLeaves leaves: TreeHelper.getLeavesMapForModId(ModConstants.MODID).values()) {
 			Item item = Item.getItemFromBlock(leaves);
-			if(item != null) {
-				TreeModelHelper.regMesher(item);
-				
-				//Register a block color handler for the leaves block
-				Minecraft.getMinecraft().getBlockColors().registerBlockColorHandler(new IBlockColor() {
-					@Override
-					public int colorMultiplier(IBlockState state, IBlockAccess worldIn, BlockPos pos, int tintIndex) {
-						Block block = state.getBlock();
-						if(TreeHelper.isLeaves(block)) {
-							BlockDynamicLeaves leaves = (BlockDynamicLeaves) block;
-							DynamicTree tree = leaves.getTree(state);
-							return tree.foliageColorMultiplier(state, worldIn, pos);
-						}
-						return 0x00ff00ff;//Magenta shading to indicate error
-					}
-				}, new Block[] {leaves});
-				
-				//Register a item color handler for the leaves item block
-				Minecraft.getMinecraft().getItemColors().registerItemColorHandler(new IItemColor() {
-					@Override
-					public int getColorFromItemstack(ItemStack stack, int tintIndex) {
-						return ColorizerFoliage.getFoliageColorBasic();
-					}
-				}, new Item[] {Item.getItemFromBlock(leaves)});
-			}
+			ModelHelper.regModel(item);
 		}
 
+		//Register the file loader for Branch models
+		//ModelLoaderRegistry.registerLoader(new ModelLoaderBranch());
 	}
+	
+	public void registerColorHandlers() {
 		
+		final int magenta = 0x00FF00FF;//for errors.. because magenta sucks.
+		
+		//TREE PARTS
+		
+		//Register GrowingLeavesBlocks Colorizers
+		for(BlockDynamicLeaves leaves: TreeHelper.getLeavesMapForModId(ModConstants.MODID).values()) {
+			
+			ModelHelper.regColorHandler(leaves, new IBlockColor() {
+				@Override
+				public int colorMultiplier(IBlockState state, IBlockAccess worldIn, BlockPos pos, int tintIndex) {
+					Block block = state.getBlock();
+					if(TreeHelper.isLeaves(block)) {
+						return ((BlockDynamicLeaves) block).getTree(state).foliageColorMultiplier(state, worldIn, pos);
+					}
+					return magenta;
+				}
+			});
+				
+			ModelHelper.regColorHandler(Item.getItemFromBlock(leaves), new IItemColor() {
+				@Override
+				public int getColorFromItemstack(ItemStack stack, int tintIndex) {
+					return ColorizerFoliage.getFoliageColorBasic();
+				}
+			});
+		}
+
+		//Register Sapling Colorizer
+		ModelHelper.regColorHandler(ModBlocks.ironSapling, new IBlockColor() {
+			@Override
+			public int colorMultiplier(IBlockState state, IBlockAccess world, BlockPos pos, int tintIndex) {
+				return ModBlocks.ironSapling.getTree(state).foliageColorMultiplier(state, world, pos);
+			}
+		});
+		
+	}
+	
 }

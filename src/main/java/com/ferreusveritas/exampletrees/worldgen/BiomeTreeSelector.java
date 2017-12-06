@@ -5,7 +5,7 @@ import java.util.Random;
 import com.ferreusveritas.dynamictrees.api.TreeRegistry;
 import com.ferreusveritas.dynamictrees.api.worldgen.IBiomeTreeSelector;
 import com.ferreusveritas.dynamictrees.trees.DynamicTree;
-import com.ferreusveritas.exampletrees.ExampleTrees;
+import com.ferreusveritas.exampletrees.ModConstants;
 
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.math.BlockPos;
@@ -20,12 +20,12 @@ public class BiomeTreeSelector implements IBiomeTreeSelector{
 	
 	@Override
 	public String getName() {
-		return ExampleTrees.MODID + ":" + "default";
+		return ModConstants.MODID + ":" + "default";
 	}
 	
 	@Override
 	public void init() {
-		ironTree = TreeRegistry.findTree(ExampleTrees.MODID, "iron");
+		ironTree = TreeRegistry.findTree(ModConstants.MODID, "iron");
 	}
 	
 	@Override

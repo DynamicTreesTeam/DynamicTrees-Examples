@@ -4,7 +4,7 @@ import java.util.Random;
 
 import com.ferreusveritas.dynamictrees.api.worldgen.IBiomeDensityProvider;
 import com.ferreusveritas.dynamictrees.trees.DynamicTree;
-import com.ferreusveritas.exampletrees.ExampleTrees;
+import com.ferreusveritas.exampletrees.ModConstants;
 
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.BiomeDictionary;
@@ -14,7 +14,7 @@ public class BiomeDensityProvider implements IBiomeDensityProvider {
 
 	@Override
 	public String getName() {
-		return ExampleTrees.MODID + ":default";
+		return ModConstants.MODID + ":default";
 	}
 
 	@Override
