@@ -16,9 +16,9 @@ public class ModRecipes {
 	public static void registerRecipes(final RegistryEvent.Register<IRecipe> event) {
 		final IForgeRegistry<IRecipe> registry = event.getRegistry();
 		
-		/*for(DynamicTree tree: ModTrees.exampleTrees) {
+		for(DynamicTree tree: ModTrees.exampleTrees) {
 			tree.registerRecipes(registry);
-		}*/		
+		}		
 	}
 	
 }
