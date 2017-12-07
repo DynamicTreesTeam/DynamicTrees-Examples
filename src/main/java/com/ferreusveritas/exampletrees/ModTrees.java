@@ -2,8 +2,8 @@ package com.ferreusveritas.exampletrees;
 
 import java.util.ArrayList;
 
-import com.ferreusveritas.dynamictrees.api.TreeRegistry;
 import com.ferreusveritas.dynamictrees.trees.DynamicTree;
+import com.ferreusveritas.dynamictrees.trees.Species;
 import com.ferreusveritas.exampletrees.trees.TreeIron;
 
 public class ModTrees {
@@ -19,8 +19,7 @@ public class ModTrees {
 		
 		exampleTrees.add(ironTree);
 		
-		//Register the trees.  A seed for the tree is automatically created if one hasn't been set manually.
-		TreeRegistry.registerTrees(exampleTrees);
+		((Species) ironTree.getCommonSpecies()).generateSeed();
 	}
 	
 }

@@ -2,8 +2,8 @@ package com.ferreusveritas.exampletrees.worldgen;
 
 import java.util.Random;
 
+import com.ferreusveritas.dynamictrees.api.treedata.ISpecies;
 import com.ferreusveritas.dynamictrees.api.worldgen.IBiomeDensityProvider;
-import com.ferreusveritas.dynamictrees.trees.DynamicTree;
 import com.ferreusveritas.exampletrees.ModConstants;
 
 import net.minecraft.world.biome.Biome;
@@ -28,7 +28,7 @@ public class BiomeDensityProvider implements IBiomeDensityProvider {
 	}
 
 	@Override
-	public EnumChance chance(Biome biome, DynamicTree tree, int radius, Random random) {
+	public EnumChance chance(Biome biome, ISpecies tree, int radius, Random random) {
 				
 		if(BiomeDictionary.hasType(biome, Type.MESA)) {
 			return random.nextFloat() < 0.025f ? EnumChance.OK : EnumChance.UNHANDLED;

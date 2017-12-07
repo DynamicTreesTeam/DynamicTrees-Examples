@@ -3,7 +3,7 @@ package com.ferreusveritas.exampletrees;
 import com.ferreusveritas.dynamictrees.api.WorldGenRegistry;
 import com.ferreusveritas.exampletrees.proxy.CommonProxy;
 import com.ferreusveritas.exampletrees.worldgen.BiomeDensityProvider;
-import com.ferreusveritas.exampletrees.worldgen.BiomeTreeSelector;
+import com.ferreusveritas.exampletrees.worldgen.BiomeSpeciesSelector;
 
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
@@ -40,7 +40,7 @@ public class ExampleTrees {
 	public void registerBiomeHandlers() {
 		
 		if(WorldGenRegistry.isWorldGenEnabled()) {
-			WorldGenRegistry.registerBiomeTreeSelector(new BiomeTreeSelector());
+			WorldGenRegistry.registerBiomeTreeSelector(new BiomeSpeciesSelector());
 			WorldGenRegistry.registerBiomeDensityProvider(new BiomeDensityProvider());
 		}
 		

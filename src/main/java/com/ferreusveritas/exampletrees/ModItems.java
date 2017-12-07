@@ -31,8 +31,8 @@ public class ModItems {
 		ArrayList<Block> treeBlocks = new ArrayList<Block>();
 
 		for(DynamicTree tree: ModTrees.exampleTrees) {
-			tree.getRegisterableItems(treeItems);
 			tree.getRegisterableBlocks(treeBlocks);
+			registry.register(tree.getCommonSpecies().getSeed());
 		}
 
 		for(Item item: treeItems) {

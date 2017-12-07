@@ -3,8 +3,8 @@ package com.ferreusveritas.exampletrees.worldgen;
 import java.util.Random;
 
 import com.ferreusveritas.dynamictrees.api.TreeRegistry;
-import com.ferreusveritas.dynamictrees.api.worldgen.IBiomeTreeSelector;
-import com.ferreusveritas.dynamictrees.trees.DynamicTree;
+import com.ferreusveritas.dynamictrees.api.treedata.ISpecies;
+import com.ferreusveritas.dynamictrees.api.worldgen.IBiomeSpeciesSelector;
 import com.ferreusveritas.exampletrees.ModConstants;
 
 import net.minecraft.block.state.IBlockState;
@@ -14,9 +14,9 @@ import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.BiomeDictionary.Type;
 
-public class BiomeTreeSelector implements IBiomeTreeSelector{
+public class BiomeSpeciesSelector implements IBiomeSpeciesSelector {
 	
-	DynamicTree ironTree;
+	ISpecies ironTree;
 	
 	@Override
 	public String getName() {
@@ -25,11 +25,11 @@ public class BiomeTreeSelector implements IBiomeTreeSelector{
 	
 	@Override
 	public void init() {
-		ironTree = TreeRegistry.findTree(ModConstants.MODID, "iron");
+		ironTree = TreeRegistry.findSpecies(ModConstants.MODID, "iron");
 	}
 	
 	@Override
-	public Decision getTree(World world, Biome biome, BlockPos pos, IBlockState dirt, Random random) {
+	public Decision getSpecies(World world, Biome biome, BlockPos pos, IBlockState dirt, Random random) {
 		
 		//We want this tree to generate in mesa biomes
 		if(BiomeDictionary.hasType(biome, Type.MESA)) {
