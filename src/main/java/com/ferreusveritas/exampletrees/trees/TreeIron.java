@@ -1,6 +1,7 @@
 package com.ferreusveritas.exampletrees.trees;
 
 import com.ferreusveritas.dynamictrees.api.TreeRegistry;
+import com.ferreusveritas.dynamictrees.api.treedata.ISpecies;
 import com.ferreusveritas.dynamictrees.trees.DynamicTree;
 import com.ferreusveritas.dynamictrees.trees.Species;
 import com.ferreusveritas.exampletrees.ModBlocks;
@@ -64,17 +65,10 @@ public class TreeIron extends DynamicTree {
 		
 	}
 	
-	Species species;
-	
-	@Override
-	public Species getCommonSpecies() {
-		return species;
-	}
+	ISpecies species;
 	
 	public TreeIron() {
 		super(ModConstants.MODID, "iron", 0);
-		species = new TreeIronSpecies(ModConstants.MODID, this);
-		TreeRegistry.registerSpecies(species);
 
 		//Set up primitive log. This controls what is dropped on harvest, block hardness, flammability, etc.
 		IBlockState primLog = ModBlocks.ironLog.getDefaultState();
@@ -84,5 +78,15 @@ public class TreeIron extends DynamicTree {
 		IBlockState primLeaves = Blocks.WOOL.getDefaultState().withProperty(BlockColored.COLOR, EnumDyeColor.SILVER);
 		setPrimitiveLeaves(primLeaves, new ItemStack(primLeaves.getBlock(), 1, primLeaves.getValue(BlockColored.COLOR).getMetadata()));
 	}
-		
+
+	@Override
+	public ISpecies getCommonSpecies() {
+		return species;
+	}
+
+	@Override
+	public void createSpecies() {
+		species = TreeRegistry.registerSpecies(new TreeIronSpecies(ModConstants.MODID, this));
+	}
+	
 }
