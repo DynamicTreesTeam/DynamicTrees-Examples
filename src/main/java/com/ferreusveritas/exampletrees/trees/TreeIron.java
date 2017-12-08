@@ -13,6 +13,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.biome.Biome;
@@ -23,8 +24,8 @@ public class TreeIron extends DynamicTree {
 
 	public class TreeIronSpecies extends Species {
 
-		public TreeIronSpecies(String modId, DynamicTree treeFamily) {
-			super(modId, treeFamily.getName(), treeFamily);
+		public TreeIronSpecies(DynamicTree treeFamily) {
+			super(treeFamily.getName(), treeFamily);
 
 			//Immensely slow-growing, stocky tree that pulls trace amounts of iron from the dirt
 			setBasicGrowingParameters(0.5f, 10.0f, getUpProbability(), getLowestBranchHeight(), 0.1f);
@@ -68,7 +69,7 @@ public class TreeIron extends DynamicTree {
 	ISpecies species;
 	
 	public TreeIron() {
-		super(ModConstants.MODID, "iron", 0);
+		super(new ResourceLocation(ModConstants.MODID, "iron"), 0);
 
 		//Set up primitive log. This controls what is dropped on harvest, block hardness, flammability, etc.
 		IBlockState primLog = ModBlocks.ironLog.getDefaultState();
@@ -86,7 +87,7 @@ public class TreeIron extends DynamicTree {
 
 	@Override
 	public void createSpecies() {
-		species = TreeRegistry.registerSpecies(new TreeIronSpecies(ModConstants.MODID, this));
+		species = TreeRegistry.registerSpecies(new TreeIronSpecies(this));
 	}
 	
 }

@@ -8,6 +8,7 @@ import com.ferreusveritas.dynamictrees.api.worldgen.IBiomeSpeciesSelector;
 import com.ferreusveritas.exampletrees.ModConstants;
 
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
@@ -25,7 +26,7 @@ public class BiomeSpeciesSelector implements IBiomeSpeciesSelector {
 	
 	@Override
 	public void init() {
-		ironTree = TreeRegistry.findSpecies(ModConstants.MODID, "iron");
+		ironTree = TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, "iron"));
 	}
 	
 	@Override
