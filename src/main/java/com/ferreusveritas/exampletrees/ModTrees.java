@@ -20,6 +20,10 @@ public class ModTrees {
 		exampleTrees.add(ironTree);
 		
 		((Species) ironTree.getCommonSpecies()).generateSeed();
+		
+		for(DynamicTree tree: exampleTrees) {
+			tree.registerSpecies(Species.REGISTRY);
+		}
 	}
 	
 }

@@ -3,11 +3,12 @@ package com.ferreusveritas.exampletrees.worldgen;
 import java.util.Random;
 
 import com.ferreusveritas.dynamictrees.api.TreeRegistry;
-import com.ferreusveritas.dynamictrees.api.treedata.ISpecies;
 import com.ferreusveritas.dynamictrees.api.worldgen.IBiomeSpeciesSelector;
+import com.ferreusveritas.dynamictrees.trees.Species;
 import com.ferreusveritas.exampletrees.ModConstants;
 
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
@@ -16,7 +17,7 @@ import net.minecraftforge.common.BiomeDictionary.Type;
 
 public class BiomeSpeciesSelector implements IBiomeSpeciesSelector {
 	
-	ISpecies ironTree;
+	Species ironTree;
 	
 	@Override
 	public String getName() {
@@ -25,7 +26,7 @@ public class BiomeSpeciesSelector implements IBiomeSpeciesSelector {
 	
 	@Override
 	public void init() {
-		ironTree = TreeRegistry.findSpecies(ModConstants.MODID, "iron");
+		ironTree = TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, "iron"));
 	}
 	
 	@Override
