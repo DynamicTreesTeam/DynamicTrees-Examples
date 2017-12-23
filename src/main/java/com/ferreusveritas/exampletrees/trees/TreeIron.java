@@ -6,6 +6,7 @@ import com.ferreusveritas.dynamictrees.trees.DynamicTree;
 import com.ferreusveritas.dynamictrees.trees.Species;
 import com.ferreusveritas.exampletrees.ModBlocks;
 import com.ferreusveritas.exampletrees.ModConstants;
+import com.ferreusveritas.exampletrees.ModItems;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockColored;
@@ -67,7 +68,7 @@ public class TreeIron extends DynamicTree {
 		
 		@Override
 		public float getSeedDropRate() {
-			return 0.1f;
+			return 0.0f;//0.1f;
 		}
 		
 		/*@Override
@@ -83,8 +84,8 @@ public class TreeIron extends DynamicTree {
 		super(new ResourceLocation(ModConstants.MODID, "iron"), 0);
 
 		//Set up primitive log. This controls what is dropped on harvest, block hardness, flammability, etc.
-		IBlockState primLog = ModBlocks.ironLog.getDefaultState();
-		setPrimitiveLog(primLog, new ItemStack(primLog.getBlock()));
+		IBlockState primLog = ModBlocks.ironLog.getDefaultState();		
+		setPrimitiveLog(primLog, new ItemStack(ModItems.itemIronLog));
 		
 		//Set up primitive leaves. This controls what is dropped on shearing, branch support, leaves replacement, etc.
 		IBlockState primLeaves = Blocks.WOOL.getDefaultState().withProperty(BlockColored.COLOR, EnumDyeColor.SILVER);

@@ -17,15 +17,18 @@ import net.minecraftforge.registries.IForgeRegistry;
 @Mod.EventBusSubscriber(modid = ModConstants.MODID)
 public class ModItems {
 
+	public static Item itemIronLog;
+	
 	public static void preInit() {
-		//Mod Specific items are created here
+		//Mod Specific items are created here		
+		itemIronLog = new ItemBlock(ModBlocks.ironLog).setRegistryName(ModBlocks.ironLog.getRegistryName());
 	}
 	
 	@SubscribeEvent
 	public static void registerItems(final RegistryEvent.Register<Item> event) {
 		final IForgeRegistry<Item> registry = event.getRegistry();
 
-		registerItemBlock(registry, ModBlocks.ironLog);
+		registry.register(itemIronLog);
 		
 		ArrayList<Item> treeItems = new ArrayList<Item>();
 		ArrayList<Block> treeBlocks = new ArrayList<Block>();
