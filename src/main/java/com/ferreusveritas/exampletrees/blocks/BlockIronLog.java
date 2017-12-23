@@ -30,6 +30,7 @@ public class BlockIronLog extends BlockLog {
 	
     @Override
 	public IBlockState getStateFromMeta(int meta) {
+    	    	
         IBlockState iblockstate = this.getDefaultState();
 
         switch (meta & 12) {
@@ -38,7 +39,7 @@ public class BlockIronLog extends BlockLog {
             case 8: iblockstate = iblockstate.withProperty(LOG_AXIS, BlockLog.EnumAxis.Z);  break;
             default: iblockstate = iblockstate.withProperty(LOG_AXIS, BlockLog.EnumAxis.NONE);
         }
-
+        
         return iblockstate;
     }
 
@@ -52,10 +53,10 @@ public class BlockIronLog extends BlockLog {
         switch (state.getValue(LOG_AXIS)) {
             case X:  i |= 4; break;
             case Z:  i |= 8; break;
-            default:
-            case NONE: i |= 12;
+            case NONE: i |= 12; break;
+            default: break;
         }
-
+        
         return i;
     }
 }

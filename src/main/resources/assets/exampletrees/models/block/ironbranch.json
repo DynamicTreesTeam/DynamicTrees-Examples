@@ -1,7 +1,7 @@
 {
     "parent": "dynamictrees:block/smartmodel/branch",
     "textures": {
-        "bark": "blocks/anvil_base",
-        "rings": "blocks/iron_block"
+        "bark": "exampletrees:blocks/ironlogbark",
+        "rings": "exampletrees:blocks/ironlogrings"
     }
 }

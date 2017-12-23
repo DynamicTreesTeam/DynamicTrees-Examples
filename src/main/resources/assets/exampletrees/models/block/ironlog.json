@@ -1,7 +1,7 @@
 {
     "parent": "block/cube_column",
     "textures": {
-        "end": "blocks/iron_block",
-        "side": "blocks/anvil_base"
+        "end": "exampletrees:blocks/ironlogrings",
+        "side": "exampletrees:blocks/ironlogbark"
     }
 }

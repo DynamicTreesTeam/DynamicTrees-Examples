@@ -1,5 +1,7 @@
 package com.ferreusveritas.exampletrees.trees;
 
+import java.util.Random;
+
 import com.ferreusveritas.dynamictrees.trees.DynamicTree;
 import com.ferreusveritas.dynamictrees.trees.Species;
 import com.ferreusveritas.exampletrees.ModBlocks;
@@ -57,6 +59,16 @@ public class TreeIron extends DynamicTree {
 			//Also make it able to grow on the traditional surfaces
 			return super.isAcceptableSoil(blockAccess, pos, soilBlockState);
 		}
+	
+		@Override
+		public int getTreeHarvestSeedQuantity(Random random) {
+			return 0;
+		}
+		
+		@Override
+		public float getSeedDropRate() {
+			return 0.1f;
+		}
 		
 		/*@Override
 		public void addJoCodes() {
@@ -94,4 +106,13 @@ public class TreeIron extends DynamicTree {
 		speciesRegistry.register(species);
 	}
 	
+	@Override
+	public int foliageColorMultiplier(IBlockState state, IBlockAccess world, BlockPos pos) {
+		int hashmap = (32 & ((pos.getX() * 2536123) ^ (pos.getY() * 642361431 ) ^ (pos.getZ() * 86547653)));
+		int r = 150 + (32 & hashmap) ;   //173
+		int g = 56 + (16 & (hashmap * 763621));
+		int b = 24;
+		
+		return r << 16 | g << 8 | b;
+	}
 }
