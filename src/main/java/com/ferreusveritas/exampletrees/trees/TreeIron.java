@@ -17,6 +17,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
+import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.BiomeDictionary.Type;
@@ -50,7 +51,7 @@ public class TreeIron extends DynamicTree {
 		}
 	
 		@Override
-		public boolean isAcceptableSoil(IBlockAccess blockAccess, BlockPos pos, IBlockState soilBlockState) {
+		public boolean isAcceptableSoil(World world, BlockPos pos, IBlockState soilBlockState) {
 			Block block = soilBlockState.getBlock();
 			
 			//Make the tree able to grow on sand and hardened clay so it can spawn in Mesa biomes
@@ -58,7 +59,7 @@ public class TreeIron extends DynamicTree {
 				return true;
 			}
 			//Also make it able to grow on the traditional surfaces
-			return super.isAcceptableSoil(blockAccess, pos, soilBlockState);
+			return super.isAcceptableSoil(world, pos, soilBlockState);
 		}
 	
 		@Override
