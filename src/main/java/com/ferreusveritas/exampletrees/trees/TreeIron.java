@@ -2,6 +2,7 @@ package com.ferreusveritas.exampletrees.trees;
 
 import java.util.Random;
 
+import com.ferreusveritas.dynamictrees.misc.SeedDropCreator;
 import com.ferreusveritas.dynamictrees.trees.DynamicTree;
 import com.ferreusveritas.dynamictrees.trees.Species;
 import com.ferreusveritas.exampletrees.ModBlocks;
@@ -42,6 +43,17 @@ public class TreeIron extends DynamicTree {
 			envFactor(Type.WATER, 0.25f);
 			envFactor(Type.DRY, 1.05f);
 			
+			addDropCreator(new SeedDropCreator(0.1f) {
+				@Override
+				public ItemStack getHarvestDrop(World world, Species species, BlockPos leafPos, Random random, int soilLife, int fortune) {
+					return ItemStack.EMPTY;
+				}
+				
+				@Override
+				public ItemStack getLeavesDrop(IBlockAccess access, Species species, BlockPos breakPos, Random random, int fortune) {
+					return ItemStack.EMPTY;
+				}
+			});
 		}
 		
 		@Override
@@ -60,16 +72,6 @@ public class TreeIron extends DynamicTree {
 			}
 			//Also make it able to grow on the traditional surfaces
 			return super.isAcceptableSoil(world, pos, soilBlockState);
-		}
-	
-		@Override
-		public int getTreeHarvestSeedQuantity(Random random) {
-			return 0;
-		}
-		
-		@Override
-		public float getSeedDropRate() {
-			return 0.0f;//0.1f;
 		}
 		
 		/*@Override
