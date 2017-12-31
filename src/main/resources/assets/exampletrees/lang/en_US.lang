@@ -1,6 +1,10 @@
 tile.leaves0.name=Dynamic Leaves
 
-tile.ironbranch.name=Dynamic Iron Tree
+tile.exampletrees:ironbranch.name=Dynamic Iron Tree
 tile.ironlog.name=Iron Log
 
+tile.exampletrees:coalbranch.name=Dynamic Coal Tree
+
+
 item.ironseed.name=Iron Acorn
+item.coalseed.name=Coal Seed Pod

@@ -3,9 +3,6 @@ package com.ferreusveritas.exampletrees;
 import java.util.ArrayList;
 
 import com.ferreusveritas.dynamictrees.api.TreeHelper;
-import com.ferreusveritas.dynamictrees.blocks.BlockDynamicLeaves;
-import com.ferreusveritas.dynamictrees.blocks.BlockDynamicSapling;
-import com.ferreusveritas.dynamictrees.trees.DynamicTree;
 import com.ferreusveritas.exampletrees.blocks.BlockIronLog;
 
 import net.minecraft.block.Block;
@@ -18,33 +15,21 @@ import net.minecraftforge.registries.IForgeRegistry;
 public class ModBlocks {
 
 	public static BlockIronLog ironLog;
-	public static BlockDynamicSapling ironSapling;
 
 	public static void preInit() {
 		ironLog = new BlockIronLog();
-		ironSapling = new BlockDynamicSapling("ironsapling");// Create a sapling block
 	}
 	
 	@SubscribeEvent
 	public static void registerBlocks(final RegistryEvent.Register<Block> event) {
 		final IForgeRegistry<Block> registry = event.getRegistry();
 						
+		ArrayList<Block> treeBlocks = new ArrayList<>();
+		ModTrees.exampleTrees.forEach(tree -> tree.getRegisterableBlocks(treeBlocks));
+		treeBlocks.addAll(TreeHelper.getLeavesMapForModId(ModConstants.MODID).values());
+		
 		registry.register(ironLog);
-		registry.register(ironSapling);
-		
-		ArrayList<Block> treeBlocks = new ArrayList<Block>();
-
-		for(DynamicTree tree: ModTrees.exampleTrees) {
-			tree.getRegisterableBlocks(treeBlocks);
-		}
-
-		for(Block block: treeBlocks) {
-			registry.register(block);
-		}
-		
-		for(BlockDynamicLeaves leavesBlock: TreeHelper.getLeavesMapForModId(ModConstants.MODID).values()) {
-			registry.register(leavesBlock);
-		}
+		registry.registerAll(treeBlocks.toArray(new Block[0]));
 	}
 	
 }

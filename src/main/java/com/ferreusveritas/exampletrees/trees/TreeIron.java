@@ -1,7 +1,9 @@
 package com.ferreusveritas.exampletrees.trees;
 
+import java.util.List;
 import java.util.Random;
 
+import com.ferreusveritas.dynamictrees.blocks.BlockDynamicSapling;
 import com.ferreusveritas.dynamictrees.misc.SeedDropCreator;
 import com.ferreusveritas.dynamictrees.trees.DynamicTree;
 import com.ferreusveritas.dynamictrees.trees.Species;
@@ -22,20 +24,20 @@ import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.BiomeDictionary.Type;
-import net.minecraftforge.registries.IForgeRegistry;
 
 public class TreeIron extends DynamicTree {
-
+	
+	//Species need not be created as a nested class.  They can be created after the tree has already been constructed.
 	public class TreeIronSpecies extends Species {
-
+		
 		public TreeIronSpecies(DynamicTree treeFamily) {
 			super(treeFamily.getName(), treeFamily);
 
 			//Immensely slow-growing, stocky tree that pulls trace amounts of iron from the dirt
 			setBasicGrowingParameters(0.5f, 10.0f, getUpProbability(), getLowestBranchHeight(), 0.1f);
 			
-			//Set the dynamic sapling
-			setDynamicSapling(ModBlocks.ironSapling.getDefaultState());
+			//Setup the dynamic sapling.  This could be done outside of the constructor but here is fine.
+			setDynamicSapling(new BlockDynamicSapling("ironsapling").getDefaultState());
 			
 			//Let's pretend that iron trees have a hard time around water because of rust or something
 			envFactor(Type.BEACH, 0.1f);
@@ -80,11 +82,9 @@ public class TreeIron extends DynamicTree {
 		}*/
 		
 	}
-	
-	Species species;
-	
-	public TreeIron() {
-		super(new ResourceLocation(ModConstants.MODID, "iron"), 0);
+		
+	public TreeIron(int seq) {
+		super(new ResourceLocation(ModConstants.MODID, "iron"), seq);
 
 		//Set up primitive log. This controls what is dropped on harvest, block hardness, flammability, etc.
 		IBlockState primLog = ModBlocks.ironLog.getDefaultState();		
@@ -96,18 +96,16 @@ public class TreeIron extends DynamicTree {
 	}
 
 	@Override
-	public Species getCommonSpecies() {
-		return species;
-	}
-	
-	@Override
 	public void createSpecies() {
-		species = new TreeIronSpecies(this);
+		setCommonSpecies(new TreeIronSpecies(this));
+		commonSpecies.generateSeed();
 	}
 
+	//Since we created a DynamicSapling in the common species we need to let it out to be registered.
 	@Override
-	public void registerSpecies(IForgeRegistry<Species> speciesRegistry) {
-		speciesRegistry.register(species);
+	public List<Block> getRegisterableBlocks(List<Block> blockList) {
+		blockList.add(getCommonSpecies().getDynamicSapling().getBlock());
+		return super.getRegisterableBlocks(blockList);
 	}
 	
 	@Override

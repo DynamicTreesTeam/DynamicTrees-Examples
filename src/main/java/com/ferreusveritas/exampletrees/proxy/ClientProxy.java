@@ -3,6 +3,7 @@ package com.ferreusveritas.exampletrees.proxy;
 import com.ferreusveritas.dynamictrees.api.TreeHelper;
 import com.ferreusveritas.dynamictrees.api.client.ModelHelper;
 import com.ferreusveritas.dynamictrees.blocks.BlockDynamicLeaves;
+import com.ferreusveritas.dynamictrees.blocks.BlockDynamicSapling;
 import com.ferreusveritas.dynamictrees.trees.DynamicTree;
 import com.ferreusveritas.exampletrees.ModBlocks;
 import com.ferreusveritas.exampletrees.ModConstants;
@@ -51,8 +52,6 @@ public class ClientProxy extends CommonProxy {
 			ModelHelper.regModel(item);
 		}
 
-		//Register the file loader for Branch models
-		//ModelLoaderRegistry.registerLoader(new ModelLoaderBranch());
 	}
 	
 	public void registerColorHandlers() {
@@ -83,14 +82,11 @@ public class ClientProxy extends CommonProxy {
 			});
 		}
 
-		//Register Sapling Colorizer
-		ModelHelper.regColorHandler(ModBlocks.ironSapling, new IBlockColor() {
-			@Override
-			public int colorMultiplier(IBlockState state, IBlockAccess world, BlockPos pos, int tintIndex) {
-				return ModBlocks.ironSapling.getSpecies(state).getTree().foliageColorMultiplier(state, world, pos);
-			}
-		});
-		
+		//Register Sapling Colorizers
+		for(DynamicTree tree: ModTrees.exampleTrees) {
+			ModelHelper.regDynamicSaplingColorHandler((BlockDynamicSapling) tree.getCommonSpecies().getDynamicSapling().getBlock());
+		}
+
 	}
 	
 }
