@@ -5,7 +5,7 @@ import java.util.Collections;
 
 import com.ferreusveritas.dynamictrees.api.TreeBuilder;
 import com.ferreusveritas.dynamictrees.api.treedata.IFoliageColorHandler;
-import com.ferreusveritas.dynamictrees.misc.HarvestDropCreator;
+import com.ferreusveritas.dynamictrees.systems.dropcreators.DropCreatorHarvest;
 import com.ferreusveritas.dynamictrees.trees.DynamicTree;
 import com.ferreusveritas.dynamictrees.trees.Species;
 import com.ferreusveritas.exampletrees.trees.TreeIron;
@@ -57,7 +57,7 @@ public class ModTrees {
 				.build();
 		
 		//Make the tree drop coal when harvested for fun
-		coalTree.getCommonSpecies().addDropCreator(new HarvestDropCreator(new ResourceLocation(ModConstants.MODID, "coal"), new ItemStack(Items.COAL), 0.001f));
+		coalTree.getCommonSpecies().addDropCreator(new DropCreatorHarvest(new ResourceLocation(ModConstants.MODID, "coal"), new ItemStack(Items.COAL), 0.001f));
 		
 		//Register all of the trees
 		Collections.addAll(exampleTrees, ironTree, coalTree);
@@ -65,4 +65,3 @@ public class ModTrees {
 	}
 	
 }
-

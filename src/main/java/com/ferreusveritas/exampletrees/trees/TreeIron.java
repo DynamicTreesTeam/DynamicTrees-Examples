@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Random;
 
 import com.ferreusveritas.dynamictrees.blocks.BlockDynamicSapling;
-import com.ferreusveritas.dynamictrees.misc.SeedDropCreator;
+import com.ferreusveritas.dynamictrees.systems.dropcreators.DropCreatorSeed;
 import com.ferreusveritas.dynamictrees.trees.DynamicTree;
 import com.ferreusveritas.dynamictrees.trees.Species;
 import com.ferreusveritas.exampletrees.ModBlocks;
@@ -45,7 +45,7 @@ public class TreeIron extends DynamicTree {
 			envFactor(Type.WATER, 0.25f);
 			envFactor(Type.DRY, 1.05f);
 			
-			addDropCreator(new SeedDropCreator(0.1f) {
+			addDropCreator(new DropCreatorSeed(0.1f) {
 				@Override
 				public ItemStack getHarvestDrop(World world, Species species, BlockPos leafPos, Random random, int soilLife, int fortune) {
 					return ItemStack.EMPTY;
