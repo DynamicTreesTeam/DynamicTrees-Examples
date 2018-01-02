@@ -47,13 +47,13 @@ public class TreeIron extends DynamicTree {
 			
 			addDropCreator(new DropCreatorSeed(0.1f) {
 				@Override
-				public ItemStack getHarvestDrop(World world, Species species, BlockPos leafPos, Random random, int soilLife, int fortune) {
-					return ItemStack.EMPTY;
+				public List<ItemStack> getHarvestDrop(World world, Species species, BlockPos leafPos, Random random, List<ItemStack> dropList, int soilLife, int fortune) {
+					return dropList;
 				}
 				
 				@Override
-				public ItemStack getLeavesDrop(IBlockAccess access, Species species, BlockPos breakPos, Random random, int fortune) {
-					return ItemStack.EMPTY;
+				public List<ItemStack> getLeavesDrop(IBlockAccess access, Species species, BlockPos breakPos, Random random, List<ItemStack> dropList, int fortune) {
+					return dropList;
 				}
 			});
 		}
