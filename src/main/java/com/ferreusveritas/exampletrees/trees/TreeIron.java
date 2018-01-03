@@ -98,7 +98,7 @@ public class TreeIron extends DynamicTree {
 	@Override
 	public void createSpecies() {
 		setCommonSpecies(new TreeIronSpecies(this));
-		commonSpecies.generateSeed();
+		getCommonSpecies().generateSeed();
 	}
 
 	//Since we created a DynamicSapling in the common species we need to let it out to be registered.
