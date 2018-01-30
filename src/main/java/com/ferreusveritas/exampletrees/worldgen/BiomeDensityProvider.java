@@ -6,6 +6,7 @@ import com.ferreusveritas.dynamictrees.api.worldgen.IBiomeDensityProvider;
 import com.ferreusveritas.dynamictrees.trees.Species;
 import com.ferreusveritas.exampletrees.ModConstants;
 
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.BiomeDictionary.Type;
@@ -13,8 +14,8 @@ import net.minecraftforge.common.BiomeDictionary.Type;
 public class BiomeDensityProvider implements IBiomeDensityProvider {
 
 	@Override
-	public String getName() {
-		return ModConstants.MODID + ":default";
+	public ResourceLocation getName() {
+		return new ResourceLocation(ModConstants.MODID, "default");
 	}
 
 	@Override

@@ -20,8 +20,8 @@ public class BiomeSpeciesSelector implements IBiomeSpeciesSelector {
 	Species ironTree;
 	
 	@Override
-	public String getName() {
-		return ModConstants.MODID + ":" + "default";
+	public ResourceLocation getName() {
+		return new ResourceLocation(ModConstants.MODID, "default");
 	}
 	
 	@Override
