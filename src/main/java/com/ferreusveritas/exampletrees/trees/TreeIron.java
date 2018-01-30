@@ -39,6 +39,9 @@ public class TreeIron extends DynamicTree {
 			//Setup the dynamic sapling.  This could be done outside of the constructor but here is fine.
 			setDynamicSapling(new BlockDynamicSapling("ironsapling").getDefaultState());
 			
+			//This will allow the tree to grow in the Mesa which has very little traditional dirt.
+			addAcceptableSoil(Blocks.STAINED_HARDENED_CLAY, Blocks.HARDENED_CLAY, Blocks.SAND);
+			
 			//Let's pretend that iron trees have a hard time around water because of rust or something
 			envFactor(Type.BEACH, 0.1f);
 			envFactor(Type.WET, 0.25f);
@@ -62,18 +65,6 @@ public class TreeIron extends DynamicTree {
 		public boolean isBiomePerfect(Biome biome) {
 			//Let's pretend that Dry Mesa biomes have a lot of iron in the clays that help these trees grow.
 			return BiomeDictionary.hasType(biome, Type.MESA);
-		}
-	
-		@Override
-		public boolean isAcceptableSoil(World world, BlockPos pos, IBlockState soilBlockState) {
-			Block block = soilBlockState.getBlock();
-			
-			//Make the tree able to grow on sand and hardened clay so it can spawn in Mesa biomes
-			if(block == Blocks.STAINED_HARDENED_CLAY || block == Blocks.HARDENED_CLAY || block == Blocks.SAND) {
-				return true;
-			}
-			//Also make it able to grow on the traditional surfaces
-			return super.isAcceptableSoil(world, pos, soilBlockState);
 		}
 		
 		/*@Override
