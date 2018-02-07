@@ -9,13 +9,10 @@ import com.ferreusveritas.dynamictrees.trees.DynamicTree;
 import com.ferreusveritas.dynamictrees.trees.Species;
 import com.ferreusveritas.exampletrees.ModBlocks;
 import com.ferreusveritas.exampletrees.ModConstants;
-import com.ferreusveritas.exampletrees.ModItems;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockColored;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
-import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
@@ -31,7 +28,7 @@ public class TreeIron extends DynamicTree {
 	public class TreeIronSpecies extends Species {
 		
 		public TreeIronSpecies(DynamicTree treeFamily) {
-			super(treeFamily.getName(), treeFamily);
+			super(treeFamily.getName(), treeFamily, ModBlocks.ironLeavesProperties);
 
 			//Immensely slow-growing, stocky tree that pulls trace amounts of iron from the dirt
 			setBasicGrowingParameters(0.5f, 10.0f, getUpProbability(), getLowestBranchHeight(), 0.1f);
@@ -75,15 +72,12 @@ public class TreeIron extends DynamicTree {
 	}
 		
 	public TreeIron(int seq) {
-		super(new ResourceLocation(ModConstants.MODID, "iron"), seq);
-
-		//Set up primitive log. This controls what is dropped on harvest, block hardness, flammability, etc.
-		IBlockState primLog = ModBlocks.ironLog.getDefaultState();		
-		setPrimitiveLog(primLog, new ItemStack(ModItems.itemIronLog));
+		super(new ResourceLocation(ModConstants.MODID, "iron"));
 		
-		//Set up primitive leaves. This controls what is dropped on shearing, branch support, leaves replacement, etc.
-		IBlockState primLeaves = Blocks.WOOL.getDefaultState().withProperty(BlockColored.COLOR, EnumDyeColor.SILVER);
-		setPrimitiveLeaves(primLeaves, new ItemStack(primLeaves.getBlock(), 1, primLeaves.getValue(BlockColored.COLOR).getMetadata()));
+		//Set up primitive log. This controls what is dropped on harvest.
+		setPrimitiveLog(ModBlocks.ironLog.getDefaultState());
+
+		ModBlocks.ironLeavesProperties.setTree(this);
 	}
 
 	@Override

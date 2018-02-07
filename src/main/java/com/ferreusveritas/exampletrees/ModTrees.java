@@ -46,8 +46,8 @@ public class ModTrees {
 		DynamicTree coalTree = new TreeBuilder()
 				.setName(ModConstants.MODID, "Coal")
 				.setDynamicLeavesSequence(DemoTree.COALTREE.getSeq())
-				.setPrimitiveLog(Blocks.COAL_BLOCK.getDefaultState(), new ItemStack(Blocks.COAL_BLOCK, 1))//Harvesting will result in coal blocks
-				.setPrimitiveLeaves(acaciaLeaves, new ItemStack(acaciaLeaves.getBlock(), 1, acaciaLeaves.getValue(BlockNewLeaf.VARIANT).getMetadata() & 3))
+				.setPrimitiveLog(Blocks.COAL_BLOCK.getDefaultState())//Harvesting will result in coal blocks
+				.setPrimitiveLeaves(acaciaLeaves)
 				.setColorHandler(new IFoliageColorHandler() {
 					@Override
 					public int foliageColorMultiplier(IBlockState state, IBlockAccess world, BlockPos pos) {
