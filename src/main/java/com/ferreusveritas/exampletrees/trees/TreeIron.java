@@ -11,7 +11,6 @@ import com.ferreusveritas.exampletrees.ModBlocks;
 import com.ferreusveritas.exampletrees.ModConstants;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
@@ -71,7 +70,7 @@ public class TreeIron extends DynamicTree {
 		
 	}
 		
-	public TreeIron(int seq) {
+	public TreeIron() {
 		super(new ResourceLocation(ModConstants.MODID, "iron"));
 		
 		//Set up primitive log. This controls what is dropped on harvest.
@@ -93,13 +92,4 @@ public class TreeIron extends DynamicTree {
 		return super.getRegisterableBlocks(blockList);
 	}
 	
-	@Override
-	public int foliageColorMultiplier(IBlockState state, IBlockAccess world, BlockPos pos) {
-		int hashmap = (32 & ((pos.getX() * 2536123) ^ (pos.getY() * 642361431 ) ^ (pos.getZ() * 86547653)));
-		int r = 150 + (32 & hashmap) ;   //173
-		int g = 56 + (16 & (hashmap * 763621));
-		int b = 24;
-		
-		return r << 16 | g << 8 | b;
-	}
 }

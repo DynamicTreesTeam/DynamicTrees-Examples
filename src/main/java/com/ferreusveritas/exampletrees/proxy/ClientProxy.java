@@ -68,7 +68,7 @@ public class ClientProxy extends CommonProxy {
 				public int colorMultiplier(IBlockState state, IBlockAccess worldIn, BlockPos pos, int tintIndex) {
 					Block block = state.getBlock();
 					if(TreeHelper.isLeaves(block)) {
-						return ((BlockDynamicLeaves) block).getTree(state).foliageColorMultiplier(state, worldIn, pos);
+						return ((BlockDynamicLeaves) block).getProperties(state).foliageColorMultiplier(state, worldIn, pos);
 					}
 					return magenta;
 				}
