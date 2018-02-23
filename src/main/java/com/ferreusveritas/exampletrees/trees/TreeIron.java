@@ -5,7 +5,7 @@ import java.util.Random;
 
 import com.ferreusveritas.dynamictrees.blocks.BlockDynamicSapling;
 import com.ferreusveritas.dynamictrees.systems.dropcreators.DropCreatorSeed;
-import com.ferreusveritas.dynamictrees.trees.DynamicTree;
+import com.ferreusveritas.dynamictrees.trees.TreeFamily;
 import com.ferreusveritas.dynamictrees.trees.Species;
 import com.ferreusveritas.exampletrees.ModBlocks;
 import com.ferreusveritas.exampletrees.ModConstants;
@@ -21,12 +21,12 @@ import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.BiomeDictionary.Type;
 
-public class TreeIron extends DynamicTree {
+public class TreeIron extends TreeFamily {
 	
 	//Species need not be created as a nested class.  They can be created after the tree has already been constructed.
 	public class TreeIronSpecies extends Species {
 		
-		public TreeIronSpecies(DynamicTree treeFamily) {
+		public TreeIronSpecies(TreeFamily treeFamily) {
 			super(treeFamily.getName(), treeFamily, ModBlocks.ironLeavesProperties);
 
 			//Immensely slow-growing, stocky tree that pulls trace amounts of iron from the dirt

@@ -5,7 +5,7 @@ import java.util.Collections;
 
 import com.ferreusveritas.dynamictrees.api.TreeBuilder;
 import com.ferreusveritas.dynamictrees.systems.dropcreators.DropCreatorHarvest;
-import com.ferreusveritas.dynamictrees.trees.DynamicTree;
+import com.ferreusveritas.dynamictrees.trees.TreeFamily;
 import com.ferreusveritas.dynamictrees.trees.Species;
 import com.ferreusveritas.exampletrees.trees.TreeIron;
 
@@ -21,15 +21,15 @@ public class ModTrees {
 
 	//Sometimes it helps to cache a few blockstates
 	public static final IBlockState acaciaLeaves = Blocks.LEAVES2.getDefaultState().withProperty(BlockNewLeaf.VARIANT, BlockPlanks.EnumType.ACACIA);
-	public static ArrayList<DynamicTree> exampleTrees = new ArrayList<DynamicTree>();
+	public static ArrayList<TreeFamily> exampleTrees = new ArrayList<TreeFamily>();
 	
 	public static void preInit() {
 		
 		//Method 1: Create the tree manually
-		DynamicTree ironTree = new TreeIron();//All of the heavy lifting is done in the TreeIron class
+		TreeFamily ironTree = new TreeIron();//All of the heavy lifting is done in the TreeIron class
 		
 		//Method 2: Use the tree builder
-		DynamicTree coalTree = new TreeBuilder()
+		TreeFamily coalTree = new TreeBuilder()
 				.setName(ModConstants.MODID, "Coal")
 				.setDynamicLeavesProperties(ModBlocks.coalLeavesProperties)
 				.setPrimitiveLog(Blocks.COAL_BLOCK.getDefaultState())//Harvesting will result in coal blocks

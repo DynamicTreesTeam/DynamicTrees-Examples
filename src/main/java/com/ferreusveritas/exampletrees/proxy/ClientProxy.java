@@ -4,7 +4,7 @@ import com.ferreusveritas.dynamictrees.api.TreeHelper;
 import com.ferreusveritas.dynamictrees.api.client.ModelHelper;
 import com.ferreusveritas.dynamictrees.blocks.BlockDynamicLeaves;
 import com.ferreusveritas.dynamictrees.blocks.BlockDynamicSapling;
-import com.ferreusveritas.dynamictrees.trees.DynamicTree;
+import com.ferreusveritas.dynamictrees.trees.TreeFamily;
 import com.ferreusveritas.exampletrees.ModBlocks;
 import com.ferreusveritas.exampletrees.ModConstants;
 import com.ferreusveritas.exampletrees.ModTrees;
@@ -40,7 +40,7 @@ public class ClientProxy extends CommonProxy {
 		//TREE PARTS
 		
 		//Register Meshers for Branches and Seeds
-		for(DynamicTree tree: ModTrees.exampleTrees) {
+		for(TreeFamily tree: ModTrees.exampleTrees) {
 			ModelHelper.regModel(tree.getDynamicBranch());//Register Branch itemBlock
 			ModelHelper.regModel(tree.getCommonSpecies().getSeed());//Register Seed Item Models
 			ModelHelper.regModel(tree);//Register custom state mapper for branch
@@ -83,7 +83,7 @@ public class ClientProxy extends CommonProxy {
 		}
 
 		//Register Sapling Colorizers
-		for(DynamicTree tree: ModTrees.exampleTrees) {
+		for(TreeFamily tree: ModTrees.exampleTrees) {
 			ModelHelper.regDynamicSaplingColorHandler((BlockDynamicSapling) tree.getCommonSpecies().getDynamicSapling().getBlock());
 		}
 
