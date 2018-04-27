@@ -24,7 +24,7 @@ public class BiomeDensityProvider implements IBiomeDensityProvider {
 	}
 
 	@Override
-	public double getDensity(Biome biome, double noiseDensity, Random random) {		
+	public double density(Biome biome, double noiseDensity, Random random) {		
 		return -1;//Unhandled.. Don't do anything.  Just pass the request to the next provider in the list
 	}
 

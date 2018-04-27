@@ -30,14 +30,14 @@ public class BiomeSpeciesSelector implements IBiomeSpeciesSelector {
 	}
 	
 	@Override
-	public Decision getSpecies(World world, Biome biome, BlockPos pos, IBlockState dirt, Random random) {
+	public SpeciesSelection getSpecies(World world, Biome biome, BlockPos pos, IBlockState dirt, Random random) {
 		
 		//We want this tree to generate in mesa biomes
 		if(BiomeDictionary.hasType(biome, Type.MESA)) {
-			return new Decision(ironTree);
+			return new SpeciesSelection(ironTree);
 		}
 		
-		return new Decision();//unhandled.. pass it to the next selector in the chain
+		return new SpeciesSelection();//unhandled.. pass it to the next selector in the chain
 	}
 	
 	@Override
