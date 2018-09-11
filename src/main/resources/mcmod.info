@@ -1,0 +1,16 @@
+[
+	{
+		"modid": "exampletrees",
+		"name": "Dynamic Trees Examples",
+		"description": "A few examples of adding custom dynamic trees",
+		"version": "${version}",
+		"mcversion": "${mcversion}",
+		"url": "",
+		"updateUrl": "",
+		"authorList": ["ferreusveritas"],
+		"credits": "",
+		"logoFile": "",
+		"screenshots": [],
+		"dependencies": []
+	}
+]
