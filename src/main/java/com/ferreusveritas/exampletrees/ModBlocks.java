@@ -3,6 +3,7 @@ package com.ferreusveritas.exampletrees;
 import java.util.ArrayList;
 
 import com.ferreusveritas.dynamictrees.api.TreeHelper;
+import com.ferreusveritas.dynamictrees.blocks.LeavesPaging;
 import com.ferreusveritas.dynamictrees.blocks.LeavesProperties;
 import com.ferreusveritas.exampletrees.blocks.BlockIronLog;
 
@@ -63,10 +64,8 @@ public class ModBlocks {
 				coalLeavesProperties
 		};
 		
-		int seq = 0;
-		
 		for(LeavesProperties lp : exampleLeavesProperties) {
-			TreeHelper.getLeavesBlockForSequence(ModConstants.MODID, seq++, lp);
+			LeavesPaging.getNextLeavesBlock(ModConstants.MODID, lp);
 		}
 	}
 	
