@@ -30,7 +30,7 @@ public class ModTrees {
 		
 		//Method 2: Use the tree builder
 		TreeFamily coalTree = new TreeBuilder()
-				.setName(ModConstants.MODID, "Coal")
+				.setName(ModConstants.MODID, "coal")
 				.setDynamicLeavesProperties(ModBlocks.coalLeavesProperties)
 				.setPrimitiveLog(Blocks.COAL_BLOCK.getDefaultState())//Harvesting will result in coal blocks
 				.setPrimitiveLeaves(acaciaLeaves)
