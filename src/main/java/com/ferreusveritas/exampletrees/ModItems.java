@@ -2,7 +2,7 @@ package com.ferreusveritas.exampletrees;
 
 import java.util.ArrayList;
 
-import com.ferreusveritas.dynamictrees.api.TreeHelper;
+import com.ferreusveritas.dynamictrees.blocks.LeavesPaging;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
@@ -28,7 +28,7 @@ public class ModItems {
 
 		ArrayList<Item> treeItems = new ArrayList<>();
 		ModTrees.exampleTrees.forEach(tree -> tree.getRegisterableItems(treeItems));
-		TreeHelper.getLeavesMapForModId(ModConstants.MODID).forEach((key, block) -> treeItems.add(makeItemBlock(block)));
+		LeavesPaging.getLeavesMapForModId(ModConstants.MODID).forEach((key, block) -> treeItems.add(makeItemBlock(block)));
 
 		registry.register(itemIronLog);
 		registry.registerAll(treeItems.toArray(new Item[0]));

@@ -2,7 +2,6 @@ package com.ferreusveritas.exampletrees;
 
 import java.util.ArrayList;
 
-import com.ferreusveritas.dynamictrees.api.TreeHelper;
 import com.ferreusveritas.dynamictrees.blocks.LeavesPaging;
 import com.ferreusveritas.dynamictrees.blocks.LeavesProperties;
 import com.ferreusveritas.exampletrees.blocks.BlockIronLog;
@@ -76,7 +75,7 @@ public class ModBlocks {
 		ArrayList<Block> treeBlocks = new ArrayList<>();
 		ModTrees.exampleTrees.forEach(tree -> tree.getRegisterableBlocks(treeBlocks));
 		
-		treeBlocks.addAll(TreeHelper.getLeavesMapForModId(ModConstants.MODID).values());
+		treeBlocks.addAll(LeavesPaging.getLeavesMapForModId(ModConstants.MODID).values());
 		
 		registry.register(ironLog);
 		registry.registerAll(treeBlocks.toArray(new Block[0]));

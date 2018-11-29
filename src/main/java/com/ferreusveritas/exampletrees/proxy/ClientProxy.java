@@ -4,6 +4,7 @@ import com.ferreusveritas.dynamictrees.api.TreeHelper;
 import com.ferreusveritas.dynamictrees.api.client.ModelHelper;
 import com.ferreusveritas.dynamictrees.blocks.BlockDynamicLeaves;
 import com.ferreusveritas.dynamictrees.blocks.BlockDynamicSapling;
+import com.ferreusveritas.dynamictrees.blocks.LeavesPaging;
 import com.ferreusveritas.dynamictrees.trees.TreeFamily;
 import com.ferreusveritas.exampletrees.ModBlocks;
 import com.ferreusveritas.exampletrees.ModConstants;
@@ -47,7 +48,7 @@ public class ClientProxy extends CommonProxy {
 		}
 		
 		//Register GrowingLeavesBlocks Meshers and Colorizers
-		for(BlockDynamicLeaves leaves: TreeHelper.getLeavesMapForModId(ModConstants.MODID).values()) {
+		for(BlockDynamicLeaves leaves: LeavesPaging.getLeavesMapForModId(ModConstants.MODID).values()) {
 			Item item = Item.getItemFromBlock(leaves);
 			ModelHelper.regModel(item);
 		}
@@ -61,7 +62,7 @@ public class ClientProxy extends CommonProxy {
 		//TREE PARTS
 		
 		//Register GrowingLeavesBlocks Colorizers
-		for(BlockDynamicLeaves leaves: TreeHelper.getLeavesMapForModId(ModConstants.MODID).values()) {
+		for(BlockDynamicLeaves leaves: LeavesPaging.getLeavesMapForModId(ModConstants.MODID).values()) {
 			
 			ModelHelper.regColorHandler(leaves, new IBlockColor() {
 				@Override
