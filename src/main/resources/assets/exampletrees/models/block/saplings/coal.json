@@ -1,6 +1,7 @@
 {
 	"parent": "dynamictrees:block/sapling",
 	"textures": {
+	    "particle": "blocks/leaves_acacia",
 		"log": "exampletrees:blocks/coallogbark",
 		"leaves": "blocks/leaves_acacia"
 	}

@@ -1,15 +1,11 @@
 package com.ferreusveritas.exampletrees.trees;
 
-import java.util.List;
-
-import com.ferreusveritas.dynamictrees.blocks.BlockDynamicSapling;
 import com.ferreusveritas.dynamictrees.systems.dropcreators.DropCreatorSeed;
 import com.ferreusveritas.dynamictrees.trees.Species;
 import com.ferreusveritas.dynamictrees.trees.TreeFamily;
 import com.ferreusveritas.exampletrees.ModBlocks;
 import com.ferreusveritas.exampletrees.ModConstants;
 
-import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.biome.Biome;
@@ -26,9 +22,6 @@ public class TreeIron extends TreeFamily {
 
 			//Immensely slow-growing, stocky tree that pulls trace amounts of iron from the dirt
 			setBasicGrowingParameters(0.5f, 10.0f, getUpProbability(), getLowestBranchHeight(), 0.1f);
-			
-			//Setup the dynamic sapling.  This could be done outside of the constructor but here is fine.
-			setDynamicSapling(new BlockDynamicSapling("ironsapling").getDefaultState());
 			
 			//This will allow the tree to grow in the Mesa which has very little traditional dirt.
 			addAcceptableSoil(Blocks.STAINED_HARDENED_CLAY, Blocks.HARDENED_CLAY, Blocks.SAND);
@@ -63,13 +56,6 @@ public class TreeIron extends TreeFamily {
 	public void createSpecies() {
 		setCommonSpecies(new TreeIronSpecies(this));
 		getCommonSpecies().generateSeed();
-	}
-
-	//Since we created a DynamicSapling in the common species we need to let it out to be registered.
-	@Override
-	public List<Block> getRegisterableBlocks(List<Block> blockList) {
-		blockList.add(getCommonSpecies().getDynamicSapling().getBlock());
-		return super.getRegisterableBlocks(blockList);
 	}
 	
 }
