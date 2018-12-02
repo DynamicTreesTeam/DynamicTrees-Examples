@@ -18,7 +18,7 @@ public class TreeIron extends TreeFamily {
 	public class TreeIronSpecies extends Species {
 		
 		public TreeIronSpecies(TreeFamily treeFamily) {
-			super(treeFamily.getName(), treeFamily, ModBlocks.ironLeavesProperties);
+			super(treeFamily.getName(), treeFamily, ModBlocks.leaves.get("iron"));
 
 			//Immensely slow-growing, stocky tree that pulls trace amounts of iron from the dirt
 			setBasicGrowingParameters(0.5f, 10.0f, getUpProbability(), getLowestBranchHeight(), 0.1f);
@@ -48,8 +48,8 @@ public class TreeIron extends TreeFamily {
 		
 		//Set up primitive log. This controls what is dropped on harvest.
 		setPrimitiveLog(ModBlocks.ironLog.getDefaultState());
-
-		ModBlocks.ironLeavesProperties.setTree(this);
+		
+		ModBlocks.leaves.get("iron").setTree(this);
 	}
 
 	@Override

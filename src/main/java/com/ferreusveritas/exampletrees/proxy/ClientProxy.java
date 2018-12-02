@@ -4,6 +4,7 @@ import com.ferreusveritas.dynamictrees.api.TreeHelper;
 import com.ferreusveritas.dynamictrees.api.client.ModelHelper;
 import com.ferreusveritas.dynamictrees.blocks.BlockDynamicLeaves;
 import com.ferreusveritas.dynamictrees.blocks.LeavesPaging;
+import com.ferreusveritas.dynamictrees.client.BlockColorMultipliers;
 import com.ferreusveritas.dynamictrees.trees.TreeFamily;
 import com.ferreusveritas.exampletrees.ModBlocks;
 import com.ferreusveritas.exampletrees.ModConstants;
@@ -12,11 +13,9 @@ import com.ferreusveritas.exampletrees.ModTrees;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.color.IBlockColor;
-import net.minecraft.client.renderer.color.IItemColor;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.ColorizerFoliage;
 import net.minecraft.world.IBlockAccess;
 
 public class ClientProxy extends CommonProxy {
@@ -73,14 +72,19 @@ public class ClientProxy extends CommonProxy {
 					return magenta;
 				}
 			});
-				
-			ModelHelper.regColorHandler(Item.getItemFromBlock(leaves), new IItemColor() {
-				@Override
-				public int colorMultiplier(ItemStack stack, int tintIndex) {
-					return ColorizerFoliage.getFoliageColorBasic();
-				}
-			});
 		}
+		
+		//Register programmable custom block color providers for LeavesProperties
+		BlockColorMultipliers.register(new ResourceLocation(ModConstants.MODID, "rustyleaves"), 
+			(state, worldIn,  pos, tintIndex) -> {
+				int hashmap = (32 & ((pos.getX() * 2536123) ^ (pos.getY() * 642361431 ) ^ (pos.getZ() * 86547653)));
+				int r = 150 + (32 & hashmap) ;   //173
+				int g = 56 + (16 & (hashmap * 763621));
+				int b = 24;
+				
+				return r << 16 | g << 8 | b;
+			}
+		);
 		
 	}
 	

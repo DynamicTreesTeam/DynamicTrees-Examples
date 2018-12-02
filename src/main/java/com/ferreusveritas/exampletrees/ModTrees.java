@@ -33,7 +33,7 @@ public class ModTrees {
 		//Method 2: Use the tree builder to create a tree family plus one common species(easiest)
 		TreeFamily coalTree = new TreeBuilder()
 				.setName(ModConstants.MODID, "coal")
-				.setDynamicLeavesProperties(ModBlocks.coalLeavesProperties)
+				.setDynamicLeavesProperties(ModBlocks.leaves.get("coal"))
 				.setPrimitiveLog(Blocks.COAL_BLOCK.getDefaultState())//Harvesting will result in coal blocks
 				.setPrimitiveLeaves(acaciaLeaves)
 				.build();
