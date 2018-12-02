@@ -24,8 +24,8 @@ public class ModBlocks {
 		
 		//For this demonstration it is vital that these are never reordered.  If a leaves properties is removed from the
 		//mod then there should be a LeavesProperties.NULLPROPERTIES used as a placeholder.
-		leaves = LeavesPaging.build(
-			//Set up primitive leaves. This controls what is dropped on shearing, leaves replacement, etc.
+		//Set up primitive leaves. This controls what is dropped on shearing, leaves replacement, etc.
+		leaves = LeavesPaging.buildAll(
 			"iron", "{`color`:`@exampletrees:rustyleaves`,`leaves`:`minecraft:wool color=red`}",
 			"coal", "{`color`:`#D1C451`,`leaves`:`minecraft:leaves2 variant=acacia`}"
 		);
