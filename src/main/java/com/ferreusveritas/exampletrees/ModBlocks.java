@@ -2,13 +2,19 @@ package com.ferreusveritas.exampletrees;
 
 import java.util.ArrayList;
 import java.util.Map;
+import java.util.Random;
 
 import com.ferreusveritas.dynamictrees.api.treedata.ILeavesProperties;
+import com.ferreusveritas.dynamictrees.blocks.BlockFruit;
 import com.ferreusveritas.dynamictrees.blocks.LeavesPaging;
 import com.ferreusveritas.exampletrees.blocks.BlockIronLog;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.passive.EntityRabbit;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -18,6 +24,7 @@ import net.minecraftforge.registries.IForgeRegistry;
 public class ModBlocks {
 
 	public static BlockIronLog ironLog;
+	public static BlockFruit bunnyFruit;
 
 	/**
 	 * This value will contain a mapping for name to {@link ILeavesProperties} that
@@ -28,6 +35,18 @@ public class ModBlocks {
 	
 	public static void preInit() {
 		ironLog = new BlockIronLog();
+		bunnyFruit = new BlockFruit("bunny") {
+			@Override
+			protected boolean matureAction(World world, BlockPos pos, IBlockState state, Random rand) {
+				if(!world.isRemote) {
+					EntityRabbit bunny = new EntityRabbit(world);
+					bunny.setPosition(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5);
+					bunny.setGrowingAge(-24000);
+					world.spawnEntity(bunny);
+				}
+				return true;
+			}
+		};
 
 		//Set up primitive leaves. This controls what is dropped on shearing, leaves replacement, etc.
 		leaves = LeavesPaging.build(new ResourceLocation(ModConstants.MODID, "leaves/common.json"));
@@ -43,13 +62,14 @@ public class ModBlocks {
 	@SubscribeEvent
 	public static void registerBlocks(final RegistryEvent.Register<Block> event) {
 		final IForgeRegistry<Block> registry = event.getRegistry();
-						
+		
 		ArrayList<Block> treeBlocks = new ArrayList<>();
 		ModTrees.exampleTrees.forEach(tree -> tree.getRegisterableBlocks(treeBlocks));
 		
 		treeBlocks.addAll(LeavesPaging.getLeavesMapForModId(ModConstants.MODID).values());
 		
 		registry.register(ironLog);
+		registry.register(bunnyFruit);
 		registry.registerAll(treeBlocks.toArray(new Block[0]));
 	}
 	
