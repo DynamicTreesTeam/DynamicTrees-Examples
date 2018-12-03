@@ -1,6 +1,7 @@
 package com.ferreusveritas.exampletrees.proxy;
 
 import com.ferreusveritas.dynamictrees.api.TreeHelper;
+import com.ferreusveritas.dynamictrees.api.TreeRegistry;
 import com.ferreusveritas.dynamictrees.api.client.ModelHelper;
 import com.ferreusveritas.dynamictrees.blocks.BlockDynamicLeaves;
 import com.ferreusveritas.dynamictrees.blocks.LeavesPaging;
@@ -50,7 +51,9 @@ public class ClientProxy extends CommonProxy {
 			Item item = Item.getItemFromBlock(leaves);
 			ModelHelper.regModel(item);
 		}
-
+		
+		//Register Seed Item Models for Species not created in a TreeFamily class
+		ModelHelper.regModel(TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, "bunny")).getSeed());
 	}
 	
 	public void registerColorHandlers() {

@@ -8,6 +8,7 @@ import com.ferreusveritas.dynamictrees.blocks.LeavesPaging;
 import com.ferreusveritas.exampletrees.blocks.BlockIronLog;
 
 import net.minecraft.block.Block;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -17,19 +18,26 @@ import net.minecraftforge.registries.IForgeRegistry;
 public class ModBlocks {
 
 	public static BlockIronLog ironLog;
+
+	/**
+	 * This value will contain a mapping for name to {@link ILeavesProperties} that
+	 * will be created by one of the {@link LeavesPaging#build(com.google.gson.JsonObject)}
+	 * variations.
+	 */
 	public static Map<String, ILeavesProperties> leaves;
 	
 	public static void preInit() {
 		ironLog = new BlockIronLog();
-		
-		//For this demonstration it is vital that these are never reordered.  If a leaves properties is removed from the
-		//mod then there should be a LeavesProperties.NULLPROPERTIES used as a placeholder.
+
 		//Set up primitive leaves. This controls what is dropped on shearing, leaves replacement, etc.
-		leaves = LeavesPaging.buildAll(
-			"iron", "{`color`:`@exampletrees:rustyleaves`,`leaves`:`minecraft:wool color=red`}",
-			"coal", "{`color`:`#D1C451`,`leaves`:`minecraft:leaves2 variant=acacia`}"
-		);
+		leaves = LeavesPaging.build(new ResourceLocation(ModConstants.MODID, "leaves/common.json"));
 		
+		/*
+		 * For this demonstration it is vital that the leaves properties are never reordered.  If a
+		 * leaves properties is removed from the mod then there should be a LeavesProperties.NULLPROPERTIES
+		 * used as a placeholder.  In the json file the object label's name should be preceded with a "-"
+		 * to show that it's not to be used.
+		 */
 	}
 	
 	@SubscribeEvent

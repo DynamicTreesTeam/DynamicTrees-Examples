@@ -23,6 +23,8 @@ public class ModTrees {
 
 	//Sometimes it helps to cache a few blockstates
 	public static final IBlockState acaciaLeaves = Blocks.LEAVES2.getDefaultState().withProperty(BlockNewLeaf.VARIANT, BlockPlanks.EnumType.ACACIA);
+	
+	//A conveniant list of the TreeFamilies we've made so we can easily loop through them at certain loading stages
 	public static ArrayList<TreeFamily> exampleTrees = new ArrayList<TreeFamily>();
 	
 	public static void preInit() {
@@ -45,11 +47,15 @@ public class ModTrees {
 		Species darkOak = TreeRegistry.findSpeciesSloppy("dynamictrees:darkoak");
 		Species bunnyOak = new Species(new ResourceLocation(ModConstants.MODID, "bunny"), darkOak.getFamily(), darkOak.getLeavesProperties());
 			bunnyOak.addGenFeature(new FeatureGenFruit(bunnyOak, Blocks.LIT_PUMPKIN.getDefaultState(), Blocks.LIT_PUMPKIN.getDefaultState()));
+			bunnyOak.generateSeed();
 		
 		
-		//Register all of the trees
+		//Register all of the species in the newly created trees
 		Collections.addAll(exampleTrees, ironTree, coalTree);
 		exampleTrees.forEach(tree -> tree.registerSpecies(Species.REGISTRY));
+		
+		//Register the individual species not part of a new tree
+		Species.REGISTRY.register(bunnyOak);
 	}
 	
 }
