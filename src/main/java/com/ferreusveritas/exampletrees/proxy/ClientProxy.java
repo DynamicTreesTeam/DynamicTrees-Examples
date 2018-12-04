@@ -77,8 +77,8 @@ public class ClientProxy extends CommonProxy {
 			});
 		}
 		
-		//Register programmable custom block color providers for LeavesProperties
-		BlockColorMultipliers.register(new ResourceLocation(ModConstants.MODID, "rustyleaves"), 
+		//Register programmable custom block color providers for LeavesPropertiesJson
+		BlockColorMultipliers.register(new ResourceLocation(ModConstants.MODID, "rusty"), 
 			(state, worldIn,  pos, tintIndex) -> {
 				int hashmap = (32 & ((pos.getX() * 2536123) ^ (pos.getY() * 642361431 ) ^ (pos.getZ() * 86547653)));
 				int r = 150 + (32 & hashmap) ;   //173
