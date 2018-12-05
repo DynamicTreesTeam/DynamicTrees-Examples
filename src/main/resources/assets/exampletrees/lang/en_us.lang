@@ -6,4 +6,5 @@ tile.exampletrees:ironlog.name=Iron Log
 tile.exampletrees:coalbranch.name=Dynamic Coal Tree
 
 item.exampletrees:ironseed.name=Iron Acorn
-item.exampletrees:coalseed.name=Coal Seed Pod
+item.exampletrees:coalseed.name=Coal Seed
+item.exampletrees:bunnyseed.name=Bunny Pod

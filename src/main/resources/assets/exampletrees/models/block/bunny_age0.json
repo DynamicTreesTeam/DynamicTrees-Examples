@@ -1,0 +1,47 @@
+{
+	"ambientocclusion": false,
+	"textures": {
+		"particle": "exampletrees:blocks/bunny0",
+		"bunny": "exampletrees:blocks/bunny0"
+	},
+	"elements": [
+		{
+			"__comment": "body",
+			"from": [  7.5, 15.3, 7.5 ],
+			"to":   [  8.5, 15.8, 8.5 ],
+			"faces": {
+				"down":  { "uv": [  1,  1,  2,  2 ], "texture": "#bunny" },
+				"north": { "uv": [  1,  0,  2,  1 ], "texture": "#bunny" },
+				"south": { "uv": [  1,  2,  2,  3 ], "texture": "#bunny" },
+				"west":  { "uv": [  0,  1,  1,  2 ], "texture": "#bunny" },
+				"east":  { "uv": [  2,  1,  3,  2 ], "texture": "#bunny" }
+			}
+		},
+		{
+			"__comment": "flower outside",
+			"from": [  6.5, 14.9,  6.5 ],
+			"to":   [  9.5, 15.9,  9.5 ],
+			"rotation": { "origin": [ 8, 8, 8 ], "axis": "y", "angle": 45, "rescale": false },
+			"faces": {
+				"up":    { "uv": [ 10, 10, 14, 14 ], "texture": "#bunny" },
+				"north": { "uv": [ 10,  9, 14, 10 ], "texture": "#bunny", "rotation":180},
+				"south": { "uv": [ 10, 14, 14, 15 ], "texture": "#bunny" },
+				"west":  { "uv": [  9, 10, 10, 14 ], "texture": "#bunny", "rotation":270 },
+				"east":  { "uv": [ 14, 10, 15, 14 ], "texture": "#bunny", "rotation":90 }
+			}
+		},
+		{
+		"__comment": "flower inside",
+			"from": [  9.5, 15.9,  9.5 ],
+			"to": 	[  6.5, 14.9,  6.5 ],
+			"rotation": { "origin": [ 8, 8, 8 ], "axis": "y", "angle": 45, "rescale": false },
+			"faces": {
+				"down":  { "uv": [ 10, 10, 14, 14 ], "texture": "#bunny" },
+				"south": { "uv": [ 10,  9, 14, 10 ], "texture": "#bunny", "rotation":0 },
+				"north": { "uv": [ 10, 14, 14, 15 ], "texture": "#bunny", "rotation":180 },
+				"east":  { "uv": [  9, 10, 10, 14 ], "texture": "#bunny", "rotation":90 },
+				"west":  { "uv": [ 14, 10, 15, 14 ], "texture": "#bunny", "rotation":270 }
+			}
+		}
+	]
+}
