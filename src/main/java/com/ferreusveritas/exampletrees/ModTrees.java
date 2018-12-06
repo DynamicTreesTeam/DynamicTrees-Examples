@@ -5,7 +5,6 @@ import java.util.Collections;
 
 import com.ferreusveritas.dynamictrees.api.TreeBuilder;
 import com.ferreusveritas.dynamictrees.api.TreeRegistry;
-import com.ferreusveritas.dynamictrees.growthlogic.GrowthLogicKits;
 import com.ferreusveritas.dynamictrees.systems.dropcreators.DropCreatorHarvest;
 import com.ferreusveritas.dynamictrees.systems.featuregen.FeatureGenFruit;
 import com.ferreusveritas.dynamictrees.trees.Species;
@@ -49,7 +48,7 @@ public class ModTrees {
 		Species darkOak = TreeRegistry.findSpecies("dynamictrees:darkoak");
 		Species bunnyOak = new SpeciesRare(new ResourceLocation(ModConstants.MODID, "bunny"), darkOak.getFamily())
 				.setBasicGrowingParameters(0.30f, 18.0f, 4, 4, 0.8f)
-				.setGrowthLogicKit(GrowthLogicKits.darkOakLogic)
+				.setGrowthLogicKit(TreeRegistry.findGrowthLogicKit("darkoak"))
 				.setSoilLongevity(14)//Grows for a long long time
 				.addGenFeature(new FeatureGenFruit(ModBlocks.bunnyFruit))
 				.generateSeed();
