@@ -24,6 +24,7 @@ public class ClientProxy extends CommonProxy {
 	@Override
 	public void preInit() {
 		super.preInit();
+		registerJsonColorMultipliers();
 	}
 	
 	@Override
@@ -77,6 +78,10 @@ public class ClientProxy extends CommonProxy {
 			});
 		}
 		
+	}
+	
+	public void registerJsonColorMultipliers() {
+		
 		//Register programmable custom block color providers for LeavesPropertiesJson
 		BlockColorMultipliers.register(new ResourceLocation(ModConstants.MODID, "rusty"), 
 			(state, worldIn,  pos, tintIndex) -> {
@@ -88,7 +93,6 @@ public class ClientProxy extends CommonProxy {
 				return r << 16 | g << 8 | b;
 			}
 		);
-		
 	}
 	
 }
