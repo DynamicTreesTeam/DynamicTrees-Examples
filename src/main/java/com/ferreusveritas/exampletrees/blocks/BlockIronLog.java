@@ -17,8 +17,7 @@ public class BlockIronLog extends BlockLog {
 	}
 	
 	public BlockIronLog(String name) {
-		this.setDefaultState(this.blockState.getBaseState().withProperty(LOG_AXIS, BlockLog.EnumAxis.Y));
-		setDefaultState(this.blockState.getBaseState());
+		setDefaultState(this.blockState.getBaseState().withProperty(LOG_AXIS, BlockLog.EnumAxis.Y));
 		setRegistryName(name);
 		setUnlocalizedName(getRegistryName().toString());
 	}
