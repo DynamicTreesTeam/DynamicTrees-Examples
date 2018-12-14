@@ -1,8 +1,8 @@
 {
     "variants": {
-        "axis=y":  { "model": "exampletrees:ironlog" },
-        "axis=z":   { "model": "exampletrees:ironlog", "x": 90 },
-        "axis=x":   { "model": "exampletrees:ironlog", "x": 90, "y": 90 },
-        "axis=none": { "model": "exampletrees:ironlogbark" }
+        "axis=y":  { "model": "exampletrees:log_iron" },
+        "axis=z":   { "model": "exampletrees:log_iron", "x": 90 },
+        "axis=x":   { "model": "exampletrees:log_iron", "x": 90, "y": 90 },
+        "axis=none": { "model": "exampletrees:log_iron_bark" }
     }
 }

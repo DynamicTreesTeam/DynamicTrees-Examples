@@ -1,6 +1,6 @@
 {
     "parent": "block/cube_all",
     "textures": {
-        "all": "exampletrees:blocks/ironlogrings"
+        "all": "exampletrees:blocks/log_iron"
     }
 }

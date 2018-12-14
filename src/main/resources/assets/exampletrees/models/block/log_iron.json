@@ -1,0 +1,7 @@
+{
+    "parent": "block/cube_column",
+    "textures": {
+        "end": "exampletrees:blocks/log_iron_top",
+        "side": "exampletrees:blocks/log_iron"
+    }
+}
