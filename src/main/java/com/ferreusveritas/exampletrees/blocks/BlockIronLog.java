@@ -1,6 +1,6 @@
 package com.ferreusveritas.exampletrees.blocks;
 
-import com.ferreusveritas.dynamictrees.DynamicTrees;
+import com.ferreusveritas.dynamictrees.ModTabs;
 
 import net.minecraft.block.BlockLog;
 import net.minecraft.block.properties.IProperty;
@@ -13,7 +13,7 @@ public class BlockIronLog extends BlockLog {
 	
 	public BlockIronLog() {
 		this(name);
-		setCreativeTab(DynamicTrees.dynamicTreesTab);
+		setCreativeTab(ModTabs.dynamicTreesTab);
 	}
 	
 	public BlockIronLog(String name) {

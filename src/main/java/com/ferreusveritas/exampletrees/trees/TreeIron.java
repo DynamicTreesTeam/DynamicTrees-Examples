@@ -58,4 +58,8 @@ public class TreeIron extends TreeFamily {
 		getCommonSpecies().generateSeed();
 	}
 	
+	@Override
+	public boolean autoCreateBranch() {
+		return true;
+	}
 }
