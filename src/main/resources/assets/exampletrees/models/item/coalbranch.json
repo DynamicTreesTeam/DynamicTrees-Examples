@@ -1,7 +1,7 @@
 {
     "parent": "dynamictrees:item/branch",
     "textures": {
-        "bark": "exampletrees:blocks/coallogbark",
-        "rings": "exampletrees:blocks/coallogrings"
+        "bark": "exampletrees:blocks/log_coal",
+        "rings": "exampletrees:blocks/log_coal_top"
     }
 }
