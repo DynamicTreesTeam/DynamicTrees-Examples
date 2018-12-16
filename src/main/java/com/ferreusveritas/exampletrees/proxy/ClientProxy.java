@@ -1,5 +1,7 @@
 package com.ferreusveritas.exampletrees.proxy;
 
+import java.util.Optional;
+
 import com.ferreusveritas.dynamictrees.api.TreeHelper;
 import com.ferreusveritas.dynamictrees.api.TreeRegistry;
 import com.ferreusveritas.dynamictrees.api.client.ModelHelper;
@@ -11,13 +13,7 @@ import com.ferreusveritas.exampletrees.ModBlocks;
 import com.ferreusveritas.exampletrees.ModConstants;
 import com.ferreusveritas.exampletrees.ModTrees;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.renderer.color.IBlockColor;
-import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IBlockAccess;
 
 public class ClientProxy extends CommonProxy {
 	
@@ -47,12 +43,6 @@ public class ClientProxy extends CommonProxy {
 			ModelHelper.regModel(tree);//Register custom state mapper for branch
 		}
 		
-		//Register GrowingLeavesBlocks Meshers and Colorizers
-		for(BlockDynamicLeaves leaves: LeavesPaging.getLeavesMapForModId(ModConstants.MODID).values()) {
-			Item item = Item.getItemFromBlock(leaves);
-			ModelHelper.regModel(item);
-		}
-		
 		//Register Seed Item Models for Species not created in a TreeFamily class
 		ModelHelper.regModel(TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, "bunny")).getSeed());
 	}
@@ -65,16 +55,9 @@ public class ClientProxy extends CommonProxy {
 		
 		//Register GrowingLeavesBlocks Colorizers
 		for(BlockDynamicLeaves leaves: LeavesPaging.getLeavesMapForModId(ModConstants.MODID).values()) {
-			
-			ModelHelper.regColorHandler(leaves, new IBlockColor() {
-				@Override
-				public int colorMultiplier(IBlockState state, IBlockAccess worldIn, BlockPos pos, int tintIndex) {
-					Block block = state.getBlock();
-					if(TreeHelper.isLeaves(block)) {
-						return ((BlockDynamicLeaves) block).getProperties(state).foliageColorMultiplier(state, worldIn, pos);
-					}
-					return magenta;
-				}
+			ModelHelper.regColorHandler(leaves, (state, worldIn, pos, tintIndex) -> {
+				return Optional.of(state.getBlock()).filter(TreeHelper::isLeaves)
+					.map(b -> ((BlockDynamicLeaves) b).getProperties(state).foliageColorMultiplier(state, worldIn, pos) ).orElse(magenta);
 			});
 		}
 		
