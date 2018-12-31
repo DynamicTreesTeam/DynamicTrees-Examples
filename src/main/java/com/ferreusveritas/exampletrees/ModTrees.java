@@ -59,7 +59,9 @@ public class ModTrees {
 		
 		//Method 3: Extend an existing tree family with a new species(must be an already existing tree family, wood will be of the family type)
 		Species darkOak = TreeRegistry.findSpecies("dynamictrees:darkoak");
-		Species bunnyOak = new SpeciesRare(new ResourceLocation(ModConstants.MODID, "bunny"), darkOak.getFamily())
+		Species bunnyOak = new SpeciesRare(new ResourceLocation(ModConstants.MODID, "bunny"), darkOak.getFamily()) {
+				public boolean isThick() { return true; };
+				}
 				.setBasicGrowingParameters(0.30f, 18.0f, 4, 4, 0.8f)
 				.setGrowthLogicKit(TreeRegistry.findGrowthLogicKit("darkoak"))
 				.setSoilLongevity(14)//Grows for a long long time
